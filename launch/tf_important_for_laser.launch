@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="0 0 0 -1.5708 0 -1.5708 pico_laser_frame pico_zense_depth_frame 20" />
+  <node pkg="tf" type="static_transform_publisher" name="transform" args="0 0 0 0 0 0 pico_zense_depth_frame pointcloud_and_laser 20"/>
+</launch>

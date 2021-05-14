@@ -1,0 +1,20 @@
+<launch>
+
+     <!-- Nodelet manager for this pipeline -->
+    <node pkg="nodelet" type="nodelet" args="manager" name="depth_transforms_manager" output="screen"/>
+
+<node pkg="nodelet" type="nodelet" name="cloudify"
+    args="load depth_image_proc/point_cloud_xyz depth_transforms_manager --no-bond">
+
+	<!-- Input: Camera calibration and metadata. --> 
+        <remap from="camera_info" to="/pico_camera_info_pred_sync"/>
+        <!-- Input: Rectified depth image, registered to the RGB camera. -->
+        <remap from="image_rect" to="/pico_pred_image_sync"/> 
+        <!-- Output: XYZRGB point cloud. -->
+        <remap from="/points" to="/predicted_pcloud"/> 
+    </node>
+
+
+
+</launch>
+
